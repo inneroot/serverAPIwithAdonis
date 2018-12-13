@@ -1,0 +1,27 @@
+#install adonis cli
+sudo npm i -g @adonisjs/cli
+
+#create api only progect
+adonis new serverAdonisAPI --api-only
+
+# auth route
+Route.post('auth/register', ({request}) => { return {'Aou response '}});
+
+# user Controller
+adonis make:controller User
+
+class UserController {
+  register(){
+    return {
+      message: 'Hello from Usercontroller'
+    }
+  }
+}
+
+# auth route change for controller
+Route.post('auth/register', 'UserController.register');
+
+# Group routes to api/
+Route.group(() => {
+  Route.post('auth/register', 'UserController.register');
+}).prefix('api');
