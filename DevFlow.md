@@ -45,4 +45,12 @@ npm install sqlite3 -save
 #run migration
 adonis migration:run
 
+#add login
+Route.post('auth/login', 'UserController.login');
+
+  async login({ request, auth }) {
+    const { email, password } = request.all();
+    const token = await auth.attempt(email, password);
+    return token;
+  }
 
