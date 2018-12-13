@@ -25,3 +25,24 @@ Route.post('auth/register', 'UserController.register');
 Route.group(() => {
   Route.post('auth/register', 'UserController.register');
 }).prefix('api');
+
+#constructing Controller to add users
+class UserController {
+  async register({ request }){
+    const { email, password } = request.all();
+    const user = await User.create({
+      email, 
+      password,
+      username: email
+    });
+    return user;
+  }
+}
+
+#install sqlite3
+npm install sqlite3 -save
+
+#run migration
+adonis migration:run
+
+
