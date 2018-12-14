@@ -1,6 +1,7 @@
 'use strict'
 
 const Testobj = use('App/Models/Testobj');
+const AuthorizationService = use('App/Services/AuthorizationService');
 
 class TestobjController {
   async index({auth}){
@@ -17,6 +18,15 @@ class TestobjController {
       content
     });
     await user.testobjs().save(testobj);
+    return testobj;
+  }
+
+  async destroy({auth, request, params}){
+    const user = await auth.getUser();
+    const { id } = params;
+    const testobj = await Testobj.find(id);
+    AuthorizationService.verifyPermission(testobj, user);
+    await testobj.delete();
     return testobj;
   }
 }

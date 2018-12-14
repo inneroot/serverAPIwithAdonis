@@ -23,4 +23,5 @@ Route.group(() => {
 
   Route.get('tests', 'TestobjController.index').middleware('auth');
   Route.post('tests', 'TestobjController.create').middleware('auth');
+  Route.delete('tests/:id', 'TestobjController.destroy').middleware('auth');
 }).prefix('api');
