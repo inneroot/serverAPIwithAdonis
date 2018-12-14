@@ -36,7 +36,10 @@ class TestobjController {
     const testobj = await Testobj.find(id);
     AuthorizationService.verifyPermission(testobj, user);
     const {title, content} = request.all();
-    testobj.merge(title, content);
+    testobj.merge({
+      title,
+      content
+    });
     await testobj.save();
     return testobj;
   }
