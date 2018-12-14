@@ -20,4 +20,7 @@ const Route = use('Route')
 Route.group(() => {
   Route.post('auth/register', 'UserController.register');
   Route.post('auth/login', 'UserController.login');
+
+  Route.get('tests', 'TestobjController.index').middleware('auth');
+  Route.post('tests', 'TestobjController.create').middleware('auth');
 }).prefix('api');

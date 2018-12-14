@@ -54,3 +54,11 @@ Route.post('auth/login', 'UserController.login');
     return token;
   }
 
+#Add Testobj model
+adonis make:model Testobj -m
+#Config migration table and run it
+adonis migration:run
+
+#Add controller for Testobj
+adonis make:controller Testobj
+
