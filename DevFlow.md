@@ -67,3 +67,8 @@ adonis make:exception InvalidAccess
 
 #Add Exception ResourceNotExistException
 adonis make:exception ResourceNotExistException
+
+#Add update Testobj
+
+#RESTfull resource route refactoring
+Route.resource('tests', 'TestobjController').apiOnly().middleware('auth').formats(['json'])

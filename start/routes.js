@@ -20,8 +20,5 @@ const Route = use('Route')
 Route.group(() => {
   Route.post('auth/register', 'UserController.register');
   Route.post('auth/login', 'UserController.login');
-
-  Route.get('tests', 'TestobjController.index').middleware('auth');
-  Route.post('tests', 'TestobjController.create').middleware('auth');
-  Route.delete('tests/:id', 'TestobjController.destroy').middleware('auth');
+  Route.resource('tests', 'TestobjController').apiOnly().middleware('auth').formats(['json'])
 }).prefix('api');
