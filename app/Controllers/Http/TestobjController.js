@@ -21,6 +21,14 @@ class TestobjController {
     return testobj;
   }
 
+  async show({auth, request, params}){
+    const user = await auth.getUser();
+    const { id } = params;
+    const testobj = await Testobj.find(id);
+    AuthorizationService.verifyPermission(testobj, user);
+    return testobj;
+  } 
+
   async destroy({auth, request, params}){
     const user = await auth.getUser();
     const { id } = params;

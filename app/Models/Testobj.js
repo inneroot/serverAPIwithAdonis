@@ -7,6 +7,9 @@ class Testobj extends Model {
   user() {
     return this.belongsTo('App/Models/User');
   }
+  quizzes () {
+    return this.hasMany('App/Models/Quiz')
+  }
 }
 
 module.exports = Testobj

@@ -72,3 +72,8 @@ adonis make:exception ResourceNotExistException
 
 #RESTfull resource route refactoring
 Route.resource('tests', 'TestobjController').apiOnly().middleware('auth').formats(['json'])
+
+#Create resource Quiz nested to Testobj
+adonis make:model -m Quiz
+adonis make:controller Quiz
+index and create
