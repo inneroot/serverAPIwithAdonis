@@ -62,3 +62,5 @@ adonis migration:run
 #Add controller for Testobj
 adonis make:controller Testobj
 
+#Add Exception InvalidAccess
+adonis make:exception InvalidAccess
