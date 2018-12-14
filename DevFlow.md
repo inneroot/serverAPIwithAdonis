@@ -21,7 +21,7 @@ class UserController {
 # auth route change for controller
 Route.post('auth/register', 'UserController.register');
 
-# Group routes to api/
+# Group routes to api
 Route.group(() => {
   Route.post('auth/register', 'UserController.register');
 }).prefix('api');
@@ -64,3 +64,6 @@ adonis make:controller Testobj
 
 #Add Exception InvalidAccess
 adonis make:exception InvalidAccess
+
+#Add Exception ResourceNotExistException
+adonis make:exception ResourceNotExistException

@@ -25,7 +25,7 @@ class TestobjController {
     const user = await auth.getUser();
     const { id } = params;
     const testobj = await Testobj.find(id);
-    AuthorizationService.verifyPermission(testobj, user);
+    AuthorizationService.verifyPermission(testobj, user);    
     await testobj.delete();
     return testobj;
   }
