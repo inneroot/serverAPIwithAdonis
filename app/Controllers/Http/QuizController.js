@@ -28,6 +28,31 @@ class QuizController {
     await testobj.quizzes().save(quiz);
     return quiz;
   }
+
+  async destroy({auth, request, params}){
+    const user = await auth.getUser();
+    const { id } = params;
+    const quiz = await Quiz.find(id);
+    const testobj = await quiz.testobj().fetch();
+    AuthorizationService.verifyPermission(testobj, user);
+    await quiz.delete();
+    return quiz;
+  }
+
+  async update({auth, request, params}){
+    const user = await auth.getUser();
+    const { id } = params;
+    const quiz = await Quiz.find(id);
+    const testobj = await quiz.testobj().fetch();
+    AuthorizationService.verifyPermission(testobj, user);
+    const { question, answers} = request.all();
+    quiz.merge({
+      question,
+      answers
+    });
+    await quiz.save();
+    return quiz;
+  }
 }
 
 module.exports = QuizController
